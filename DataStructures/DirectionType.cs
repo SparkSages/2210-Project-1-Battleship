@@ -1,0 +1,4 @@
+public enum{
+    Vertical,
+    Horizontal
+}
