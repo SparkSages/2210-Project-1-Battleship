@@ -1,0 +1,105 @@
+namespace Classes{
+    
+ public abstract Ship : IHealth, IInfomatic
+ {
+    private Position : Coord2D;
+    private Length : byte;
+    private Direction : DirectionType;
+    private Points : Coord2D[];
+    private DamagedPoints : List<Coord2D>;
+    private Name : string;
+
+    public Ship(Coord2D position, DirectionType direction, byte length){
+         this.Position = position;
+         this.Direction = direction;
+         this.Length = length;
+         this.Points = new Coord2D[length];
+         this.DamagedPoints = new List<Coord2D>();
+         this.Name = "Parent Ship Class"
+    }
+
+    public bool CheckIfHit(Coord2D point){
+         if (Points.Contains(point)){
+            return true;
+         }
+         else {
+            return false;
+         }
+      
+    }
+   public void TakeDamage(Coord2D point) {
+      if (this.DamagedPoints.Contains(point)) {
+         return;
+      }
+      else {
+         DamagedPoints.Add(point);
+      }
+   }
+    public string GetName(){
+         return this.Name;
+    }
+      public string GetInfo(){
+         // Should include the max health, current health, indicate if it is dead, position, length, and direction
+         return 
+         $@"Max Health:    {this.Length}
+         CurrentHealth: {this.GetCurrentHealth()}
+         IsDead:        {this.IsDead()}
+         Position:      {this.Position}
+         Length:        {this.Length}
+         Direction:     {this.Direction}
+         "
+      }
+    #region IHealth Stuff
+   public int GetCurrentHealth(){
+      return this.length - this.DamagedPoints.Count;
+   }
+   public int GetMaxHealth(){
+      return this.Length;
+   }
+   public bool IsDead(){
+      return this.Length == this.DamagedPoints.Count;
+   }
+   public void TakeDamage(int amount){
+      throw new exception ("Ship is not damaged in this way.");
+   }
+   #endregion
+ }
+
+
+ public class Carrier : Ship
+ {
+    public Carrier(Coord2D position, DirectionType direction) : base(position, direction, 5)
+    {
+        this.Name = "Carrier";
+    }
+ }
+ public class Battleship : Ship
+ {
+    public Battleship(Coord2D position, DirectionType direction) : base(position, direction, 4)
+    {
+        this.Name = "BattleShip";
+    }
+ }
+ public class Destroyer : Ship
+ {
+    public Destroyer(Coord2D position, DirectionType direction) : base(position, direction, 3)
+    {
+        this.Name = "Destroyer";
+    }
+ }
+ public class Submarine : Ship
+ {
+    public Submarine(Coord2D position, DirectionType direction) : base(position, direction, 3)
+    {
+        this.Name = "Submarine";
+    }
+ }
+ public class PatrolBoat : Ship
+ {
+    public PatrolBoat(Coord2D position, DirectionType direction) : base(position, direction, 2)
+    {
+        this.Name = "PatrolBoat";
+    }
+ }
+
+}
