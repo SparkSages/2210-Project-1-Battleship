@@ -1,4 +1,5 @@
-public enum{
+public enum DirectionType
+{
     Vertical,
     Horizontal
 }
