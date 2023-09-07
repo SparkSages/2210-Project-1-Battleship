@@ -83,9 +83,9 @@ namespace Ships
       }
       #region IHealth Stuff
       /// <summary>
-      /// Get the current health of the ship
+      /// Used to check the health of a ship
       /// </summary>
-      /// <returns>int: Current Health</returns>
+      /// <returns>The ships current health</returns>
       public int GetCurrentHealth()
       {
          return this.Length - this.DamagedPoints.Count;
