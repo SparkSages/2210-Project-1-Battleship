@@ -73,6 +73,7 @@ namespace Ships
          else
          {
             DamagedPoints.Add(point);
+            System.Console.WriteLine($"You hit a ship at {point.X},{point.Y}!");
          }
       }
       /// <summary>
@@ -94,7 +95,7 @@ namespace Ships
          $@"Max Health:    {this.Length}
          CurrentHealth: {this.GetCurrentHealth()}
          IsDead:        {this.IsDead()}
-         Position:      {this.Position}
+         Position:      ({this.Position.X},{this.Position.Y})
          Length:        {this.Length}
          Direction:     {this.Direction}
          ";

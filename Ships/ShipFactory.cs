@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text.RegularExpressions;
 using SubShips;
 namespace Ships
@@ -11,14 +12,13 @@ namespace Ships
         /// <returns>True only if each condition is met.</returns>
         public bool VerifyShipString(string description)
         {
-            string[] stringToVerify = description.Split(',');
-            Regex regex = new Regex(@"(Carrier|Battleship|Destroyer|Submarine|Patrol Boat),\s*[0-9],\s*(h|v),\s*[0-9],\s*[0-9]");
+            var stringToVerify = description.Split(',');
             /// <summary>
-            /// Checks if the string is a valid ship string where, the ship is one of the 5 ships, the length is 1-5, the direction is h or v, and the coordinate of the ship is less than 11 or greater than 0.
+            /// Checks if the string is a valid ship string where: the ship is one of the 5 ships, the length is 1-5, the direction is h or v, and the coordinate of the ship is less than 11 or greater than 0.
             /// </summary>
             /// <param name="stringToVerify"> String from the Stream reader separated by a comma.</param>
             /// <returns>True if condition are met, False if any one condition is not met</returns>
-            if (regex.IsMatch(stringToVerify[0]) && Int32.Parse(stringToVerify[1].Trim()) < 6 && ((stringToVerify[2].Trim() == "h" && Int32.Parse(stringToVerify[1]) + Int32.Parse(stringToVerify[3]) < 11) || (stringToVerify[2].Trim() == "v" && Int32.Parse(stringToVerify[1]) + Int32.Parse(stringToVerify[4]) < 11)) && ((stringToVerify[2].Trim() == "h" && Int32.Parse(stringToVerify[1]) + Int32.Parse(stringToVerify[3]) >= 0) || (stringToVerify[2].Trim() == "v" && Int32.Parse(stringToVerify[1]) + Int32.Parse(stringToVerify[4]) >= 0)))
+            if (Int32.Parse(stringToVerify[1].Trim()) < 6 && ((stringToVerify[2].Trim() == "h" && Int32.Parse(stringToVerify[1]) + Int32.Parse(stringToVerify[3]) < 11) || (stringToVerify[2].Trim() == "v" && Int32.Parse(stringToVerify[1]) + Int32.Parse(stringToVerify[4]) < 11)) && ((stringToVerify[2].Trim() == "h" && Int32.Parse(stringToVerify[1]) + Int32.Parse(stringToVerify[3]) >= 0) || (stringToVerify[2].Trim() == "v" && Int32.Parse(stringToVerify[1]) + Int32.Parse(stringToVerify[4]) >= 0)))
             {
                 return true;
             }
@@ -72,14 +72,23 @@ namespace Ships
         /// <returns>An array of ships.</returns>
         public Ship[] ParseStringFile(string filePath)
         {
-            StreamReader sr = new StreamReader("Ships.txt");
+            StreamReader sr = new StreamReader(filePath);
             List<Ship> ships = new();
             int i = 0;
+            Regex regex = new Regex(@"(Carrier|Battleship|Destroyer|Submarine|Patrol Boat),\s*[0-9],\s*(h|v),\s*[0-9],\s*[0-9]");
             while (!sr.EndOfStream)
             {
                 string line = sr.ReadLine();
-                ships.Add(ParseShipString(line));
-                i++;
+                if (!regex.IsMatch(line)) continue;
+                else if (regex.IsMatch(line))
+                {
+                    ships.Add(ParseShipString(line));
+                    i++;
+                }
+                else
+                {
+                    continue;
+                }
             }
             return ships.ToArray();
         }
