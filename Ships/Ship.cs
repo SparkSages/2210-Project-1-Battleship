@@ -9,11 +9,11 @@ namespace Ships
       private Coord2D[] Points;
       private List<Coord2D> DamagedPoints;
       /// <summary>
-      /// Creates a ship with the given parameters
+      /// Creates a ship with the given parameters.
       /// </summary>
-      /// <param name="position"></param>
-      /// <param name="direction"></param>
-      /// <param name="length"></param>
+      /// <param name="position">coordinates of the ship.</param>
+      /// <param name="direction">direction ship is facing.</param>
+      /// <param name="length">How long is the ship?</param>
       public Ship(Coord2D position, DirectionType direction, byte length)
       {
          this.Position = position;
@@ -21,12 +21,32 @@ namespace Ships
          this.Length = length;
          this.Points = new Coord2D[length];
          this.DamagedPoints = new List<Coord2D>();
+
+         if (direction == DirectionType.Horizontal)
+         {
+            for (int i = 0; i < length; i++)
+            {
+               Points[i] = new Coord2D() { X = position.X + i, Y = position.Y };
+            }
+         }
+         else if (direction == DirectionType.Vertical)
+         {
+            for (int i = 0; i < length; i++)
+            {
+               Points[i] = new Coord2D() { X = position.X, Y = position.Y + i };
+            }
+         }
+         else
+         {
+            throw new Exception("Invalid direction");
+         }
+
       }
       /// <summary>
-      /// Checks if the given point is a part of the ship
+      /// The user can damage a ship, this method will check if the given point will do so
       /// </summary>
-      /// <param name="point"></param>
-      /// <returns></returns>
+      /// <param name="point">Point to check</param>
+      /// <returns>True if the ship is hit.</returns>
       public bool CheckIfHit(Coord2D point)
       {
          if (Points.Contains(point))
@@ -40,11 +60,10 @@ namespace Ships
 
       }
       /// <summary>
-      /// Checks if the given point is a part of the ship
-      /// if it is, it will add the point that got hit to the
-      /// ships damaged points
+      /// Checks if the given point is already a part of the ships damaged points
+      /// if it is not, it will add it to the list, if it is, it will do nothing.
       /// </summary>
-      /// <param name="point"></param>
+      /// <param name="point">coordinate to check.</param>
       public void TakeDamage(Coord2D point)
       {
          if (this.DamagedPoints.Contains(point))
@@ -57,19 +76,18 @@ namespace Ships
          }
       }
       /// <summary>
-      ///  Get the name of the ship 
+      ///  This method is used to get the name of the ship.
       /// </summary>
-      /// <returns>String: name of ship</returns>
-      /// <returns></returns>
+      /// <returns>Name of the ship.</returns>
       public string GetName()
       {
          return this.GetType().Name;
       }
       /// <summary>
-      /// Get information of the ship, including max health, current health, 
+      /// This is used to get information on ship, including max health, current health, 
       /// indicate if it is dead, position, length, and direction
       /// </summary>
-      /// <returns></returns>
+      /// <returns>A displayable string containing important information</returns>
       public string GetInfo()
       {
          return
@@ -83,7 +101,7 @@ namespace Ships
       }
       #region IHealth Stuff
       /// <summary>
-      /// Used to check the health of a ship
+      /// This is used to check the current health of a ship.
       /// </summary>
       /// <returns>The ships current health</returns>
       public int GetCurrentHealth()
@@ -91,23 +109,24 @@ namespace Ships
          return this.Length - this.DamagedPoints.Count;
       }
       /// <summary>
-      /// Get the max health of the ship
+      /// This is used to obtain the max health of the ship.
       /// </summary>
-      /// <returns>Int: Length of ship</returns>
+      /// <returns>Length of ship</returns>
       public int GetMaxHealth()
       {
          return this.Length;
       }
       /// <summary>
-      /// Checks if the ship is dead
+      /// This is used to check if a ship is dead.
       /// </summary>
-      /// <returns>if dead returns true, if alive returns false</returns>
+      /// <returns>If the ship is dead this method returns true, if it is alive alive it returns false</returns>
       public bool IsDead()
       {
          return this.Length == this.DamagedPoints.Count;
       }
       /// <summary>
-      /// Unimplemented method the ships should not be damaged in this way
+      /// This is an unimplemented method, the ships should not be damaged in this way.
+      /// If this method gets used it will throw an exception.
       /// </summary>
       /// <param name="amount"></param>
       /// <exception cref="Exception"></exception>
