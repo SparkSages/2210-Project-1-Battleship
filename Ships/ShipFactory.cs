@@ -10,7 +10,7 @@ namespace Ships
         /// </summary>
         /// <param name="stringToVerify">Input the string that needs to be tested</param>
         /// <returns>True only if each condition is met.</returns>
-        public bool VerifyShipString(string description)
+        static bool VerifyShipString(string description)
         {
             var stringToVerify = description.Split(',');
             /// <summary>
@@ -33,7 +33,7 @@ namespace Ships
         /// <param name="description">Ship description</param>
         /// <returns>A ship of the proper type</returns>
         /// <exception cref="Exception">Invalid ship string</exception>
-        public Ship ParseShipString(string description)
+        static Ship ParseShipString(string description)
         {
             if (!VerifyShipString(description))
             {
@@ -70,7 +70,7 @@ namespace Ships
         /// </summary>
         /// <param name="filePath">File path to the ship data</param>
         /// <returns>An array of ships.</returns>
-        public Ship[] ParseStringFile(string filePath)
+        public static Ship[] ParseStringFile(string filePath)
         {
             StreamReader sr = new StreamReader(filePath);
             List<Ship> ships = new();
