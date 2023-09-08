@@ -8,6 +8,8 @@ namespace Ships
       private DirectionType Direction;
       private Coord2D[] Points;
       private List<Coord2D> DamagedPoints;
+
+
       /// <summary>
       /// Creates a ship with the given parameters.
       /// </summary>
@@ -42,6 +44,8 @@ namespace Ships
          }
 
       }
+
+
       /// <summary>
       /// The user can damage a ship, this method will check if the given point will do so
       /// </summary>
@@ -59,6 +63,8 @@ namespace Ships
          }
 
       }
+
+
       /// <summary>
       /// Checks if the given point is already a part of the ships damaged points
       /// if it is not, it will add it to the list, if it is, it will do nothing.
@@ -76,6 +82,8 @@ namespace Ships
             System.Console.WriteLine($"You hit a ship at {point.X},{point.Y}!");
          }
       }
+
+
       /// <summary>
       ///  This method is used to get the name of the ship.
       /// </summary>
@@ -84,6 +92,8 @@ namespace Ships
       {
          return this.GetType().Name;
       }
+
+
       /// <summary>
       /// This is used to get information on ship, including max health, current health, 
       /// indicate if it is dead, position, length, and direction
@@ -91,9 +101,11 @@ namespace Ships
       /// <returns>A displayable string containing important information</returns>
       public string GetInfo()
       {
-         return
-         $"\nMax Health: {this.Length}\nCurrentHealth: {this.GetCurrentHealth()}\nIsDead: {this.IsDead()}\nPosition: ({this.Position.X},{this.Position.Y})\nLength: {this.Length}\nDirection: {this.Direction}";
+         string s = $"\nMax Health: {this.Length}\nCurrentHealth: {this.GetCurrentHealth()}\nIsDead: {this.IsDead()}\nPosition: ({this.Position.X},{this.Position.Y})\nLength: {this.Length}\nDirection: {this.Direction}";
+         return s;
       }
+
+
       #region IHealth Stuff
       /// <summary>
       /// This is used to check the current health of a ship.
@@ -103,6 +115,8 @@ namespace Ships
       {
          return this.Length - this.DamagedPoints.Count;
       }
+
+
       /// <summary>
       /// This is used to obtain the max health of the ship.
       /// </summary>
@@ -111,6 +125,8 @@ namespace Ships
       {
          return this.Length;
       }
+
+
       /// <summary>
       /// This is used to check if a ship is dead.
       /// </summary>
@@ -119,6 +135,8 @@ namespace Ships
       {
          return this.Length == this.DamagedPoints.Count;
       }
+
+
       /// <summary>
       /// This is an unimplemented method, the ships should not be damaged in this way.
       /// If this method gets used it will throw an exception.

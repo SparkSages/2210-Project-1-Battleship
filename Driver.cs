@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Reflection.Metadata;
 using System.Text.RegularExpressions;
 
-string userInput = null;
+string userInput;
 Regex coordRegex = new Regex(@"\s*[0-9],\s*[0-9]\s*");
 List<Ship> ships = new();
 if (args.Length > 0)
@@ -48,16 +48,18 @@ while (userInput.ToLower().Trim() != "exit")
         int count = 0;
         foreach (Ship ship in ships)
         {
-            count++;
-            System.Console.WriteLine($"{count} ship");
             if (ship.IsDead())
             {
                 Console.ForegroundColor = ConsoleColor.Red;
+                count++;
+                System.Console.WriteLine(count);
                 System.Console.WriteLine(ship.GetInfo());
             }
-            else if (!ship.IsDead())
+            else
             {
                 Console.ForegroundColor = ConsoleColor.Green;
+                count++;
+                System.Console.WriteLine(count);
                 System.Console.WriteLine(ship.GetInfo());
             }
         }
@@ -65,7 +67,6 @@ while (userInput.ToLower().Trim() != "exit")
     }
     else if (coordRegex.IsMatch(userInput))
     {
-        userInput.Split(',');
         Coord2D coord = new()
         {
             X = Int32.Parse(userInput.Split(',')[0]),
