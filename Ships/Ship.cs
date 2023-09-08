@@ -72,7 +72,7 @@ namespace Ships
          }
          else
          {
-            DamagedPoints.Add(point);
+            this.DamagedPoints.Add(point);
             System.Console.WriteLine($"You hit a ship at {point.X},{point.Y}!");
          }
       }
@@ -92,13 +92,7 @@ namespace Ships
       public string GetInfo()
       {
          return
-         $@"Max Health:    {this.Length}
-         CurrentHealth: {this.GetCurrentHealth()}
-         IsDead:        {this.IsDead()}
-         Position:      ({this.Position.X},{this.Position.Y})
-         Length:        {this.Length}
-         Direction:     {this.Direction}
-         ";
+         $"\nMax Health: {this.Length}\nCurrentHealth: {this.GetCurrentHealth()}\nIsDead: {this.IsDead()}\nPosition: ({this.Position.X},{this.Position.Y})\nLength: {this.Length}\nDirection: {this.Direction}";
       }
       #region IHealth Stuff
       /// <summary>
