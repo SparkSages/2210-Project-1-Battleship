@@ -66,8 +66,8 @@ namespace Ships
 
 
       /// <summary>
-      /// Checks if the given point is already a part of the ships damaged points
-      /// if it is not, it will add it to the list, if it is, it will do nothing.
+      /// this prevents a user from finding one point of a ship and hitting that point multiple times to kill
+      /// the ship. Does nothing if the point was already damaged.
       /// </summary>
       /// <param name="point">coordinate to check.</param>
       public void TakeDamage(Coord2D point)
@@ -101,7 +101,7 @@ namespace Ships
       /// <returns>A displayable string containing important information</returns>
       public string GetInfo()
       {
-         string s = $"\nMax Health: {this.Length}\nCurrentHealth: {this.GetCurrentHealth()}\nIsDead: {this.IsDead()}\nPosition: ({this.Position.X},{this.Position.Y})\nLength: {this.Length}\nDirection: {this.Direction}";
+         string s = $"\n{this.GetName()}\nMax Health: {this.Length}\nCurrentHealth: {this.GetCurrentHealth()}\nIsDead: {this.IsDead()}\nPosition: ({this.Position.X},{this.Position.Y})\nLength: {this.Length}\nDirection: {this.Direction}";
          return s;
       }
 

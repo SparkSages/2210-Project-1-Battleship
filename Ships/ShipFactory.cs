@@ -6,7 +6,7 @@ namespace Ships
     public class ShipFactory
     {
         /// <summary>
-        /// This is used to make sure that the user is inputting a legal string for the ship.
+        /// This is used to make sure that the user is inputting a proper string for the ship.
         /// </summary>
         /// <param name="stringToVerify">Input the string that needs to be tested</param>
         /// <returns>True only if each condition is met.</returns>
@@ -14,7 +14,7 @@ namespace Ships
         {
             var stringToVerify = description.Split(',');
             /// <summary>
-            /// Checks if the string is a valid ship string where: the ship is one of the 5 ships, the length is 1-5, the direction is h or v, and the coordinate of the ship is less than 11 or greater than 0.
+            /// Checks if the string is a valid ship string where: the length is 1-5, the direction is h or v, and the coordinate of the ship is less than 11 or greater than 0.
             /// </summary>
             /// <param name="stringToVerify"> String from the Stream reader separated by a comma.</param>
             /// <returns>True if condition are met, False if any one condition is not met</returns>

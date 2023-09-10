@@ -1,13 +1,10 @@
 using Ships;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reflection.Metadata;
-using System.Text.RegularExpressions;
 
 string userInput;
 Regex coordRegex = new Regex(@"\s*[0-9],\s*[0-9]\s*");
 List<Ship> ships = new();
+
+
 if (args.Length > 0)
 {
     userInput = args[0];
@@ -102,6 +99,11 @@ while (userInput.ToLower().Trim() != "exit")
     }
 }
 
+
+/// <summary>
+/// The user can input into the console, this displays their options
+/// </summary>
+/// <returns>the user's input</returns>
 static string ConsoleMessage()
 {
     Console.ForegroundColor = ConsoleColor.DarkYellow;
