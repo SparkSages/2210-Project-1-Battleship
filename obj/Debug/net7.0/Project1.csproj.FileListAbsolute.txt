@@ -1,0 +1,15 @@
+/Users/spark/Downloads/2210-Project-1-Battleship/bin/Debug/net7.0/Project1
+/Users/spark/Downloads/2210-Project-1-Battleship/bin/Debug/net7.0/Project1.deps.json
+/Users/spark/Downloads/2210-Project-1-Battleship/bin/Debug/net7.0/Project1.runtimeconfig.json
+/Users/spark/Downloads/2210-Project-1-Battleship/bin/Debug/net7.0/Project1.dll
+/Users/spark/Downloads/2210-Project-1-Battleship/bin/Debug/net7.0/Project1.pdb
+/Users/spark/Downloads/2210-Project-1-Battleship/obj/Debug/net7.0/Project1.csproj.AssemblyReference.cache
+/Users/spark/Downloads/2210-Project-1-Battleship/obj/Debug/net7.0/Project1.GeneratedMSBuildEditorConfig.editorconfig
+/Users/spark/Downloads/2210-Project-1-Battleship/obj/Debug/net7.0/Project1.AssemblyInfoInputs.cache
+/Users/spark/Downloads/2210-Project-1-Battleship/obj/Debug/net7.0/Project1.AssemblyInfo.cs
+/Users/spark/Downloads/2210-Project-1-Battleship/obj/Debug/net7.0/Project1.csproj.CoreCompileInputs.cache
+/Users/spark/Downloads/2210-Project-1-Battleship/obj/Debug/net7.0/Project1.dll
+/Users/spark/Downloads/2210-Project-1-Battleship/obj/Debug/net7.0/refint/Project1.dll
+/Users/spark/Downloads/2210-Project-1-Battleship/obj/Debug/net7.0/Project1.pdb
+/Users/spark/Downloads/2210-Project-1-Battleship/obj/Debug/net7.0/Project1.genruntimeconfig.cache
+/Users/spark/Downloads/2210-Project-1-Battleship/obj/Debug/net7.0/ref/Project1.dll
